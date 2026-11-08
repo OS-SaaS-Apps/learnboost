@@ -29,7 +29,26 @@ npm test         # content integrity and scoring tests
 npm run build    # static site in dist/
 ```
 
-The build output is a static site and can be hosted on any static host (e.g., GitHub Pages).
+The build output is a static site and can be hosted on any static host.
+
+## Published site
+
+Every push to `main` builds, tests and publishes all courses to GitHub Pages (workflow: [`.github/workflows/pages.yml`](.github/workflows/pages.yml)):
+
+- Landing page: https://os-saas-apps.github.io/learnboost/
+- Data Engineering Lead Prep: https://os-saas-apps.github.io/learnboost/data-engineering/
+
+To build the whole site locally: `node scripts/build-site.mjs` (output in `_site/`).
+
+## Add a course
+
+1. Create a top-level folder with an `app/` inside, e.g. `CloudArchitecture/app/`. It is published at `/cloud-architecture/`.
+2. The app must build a static site into `app/dist/` with `npm run build` and use **relative asset paths** (with Vite: `base: "./"`), because it is served from a sub-path.
+3. Add a `course` block to `app/package.json`; the landing page uses it:
+   ```json
+   "course": { "title": "…", "description": "…", "duration": "3 hours", "color": "#A8D8FF" }
+   ```
+4. Optional: an `npm test` script. It runs before every deployment, and a failing test blocks publication.
 
 ## Repository layout
 
@@ -37,6 +56,8 @@ The build output is a static site and can be hosted on any static host (e.g., Gi
 Education/
 ├── README.md
 ├── LICENSE
+├── .github/workflows/pages.yml  # build + deploy to GitHub Pages
+├── scripts/build-site.mjs       # builds every <Course>/app into _site/ with a landing page
 └── DataEngineering/
     ├── initial_course_plan.md   # first draft of the program (French)
     ├── course_plan_v2.md        # revised 4-hour design

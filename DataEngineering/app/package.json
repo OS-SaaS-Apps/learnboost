@@ -2,7 +2,14 @@
   "name": "de-lead-course",
   "private": true,
   "version": "1.0.0",
+  "description": "Interview prep for a software engineering lead moving to Data Engineering Team Lead (Swiss pharma).",
   "type": "module",
+  "course": {
+    "title": "Data Engineering Lead Prep",
+    "description": "From software engineering lead to data engineering lead: 8 modules, an interview rehearsal and a before/after quiz. Swiss pharma context, no coding.",
+    "duration": "4 hours",
+    "color": "#FFB3CF"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

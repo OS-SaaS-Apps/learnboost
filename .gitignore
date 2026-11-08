@@ -27,3 +27,6 @@ desktop.ini
 
 # Local tool settings
 .claude/settings.local.json
+
+# GitHub Pages build output
+_site/
